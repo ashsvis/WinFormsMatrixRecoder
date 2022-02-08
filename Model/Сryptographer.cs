@@ -1,23 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace WinFormsMatrixRecoder.Model
 {
     public static class Сryptographer
     {
-        public static string Encode(string text)
+        public static string EncodeDecode(string text, Lattice lattice)
         {
-
-            return text;
-        }
-
-        public static string Decode(string text)
-        {
-
-            return text;
+            var rezult = new StringBuilder();
+            for (var k = 0; k < 4; k++)
+            {
+                var offset = 0;
+                for (int i = 0; i < lattice.Side; i++)
+                    for (int j = 0; j < lattice.Side; j++)
+                    {
+                        if (lattice[i, j] == 0)
+                            rezult.Append(offset < text.Length ? text[offset] : ' ');
+                        offset++;
+                    }
+                lattice.RotateClockwise();
+            }
+            return rezult.ToString();
         }
     }
 }
