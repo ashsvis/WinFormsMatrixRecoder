@@ -38,5 +38,11 @@ namespace WinFormsMatrixRecoder
                 }
             }
         }
+
+        private void panelForMatrix_Click(object sender, EventArgs e)
+        {
+            lattice.RotateClockwise();
+            panelForMatrix.Invalidate();
+        }
     }
 }

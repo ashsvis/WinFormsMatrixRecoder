@@ -503,6 +503,7 @@
             this.panelForMatrix.Name = "panelForMatrix";
             this.panelForMatrix.Size = new System.Drawing.Size(300, 300);
             this.panelForMatrix.TabIndex = 0;
+            this.panelForMatrix.Click += new System.EventHandler(this.panelForMatrix_Click);
             this.panelForMatrix.Paint += new System.Windows.Forms.PaintEventHandler(this.panelForMatrix_Paint);
             // 
             // MainForm

@@ -10,21 +10,15 @@
             this.side = side;
             lattice = new int[side, side];
             // создание решетки без "прорезей"
-            for (int i=0; i < side; i++)
-            {
-                for (int j=0; j < side; j++)
-                {
+            for (int i = 0; i < side; i++)
+                for (int j = 0; j < side; j++)
                     lattice[i, j] = 1;
-                }
-            }
             // добавление "прорезей"
             var list = new List<Point>();
             // создадим список индексов решётки из первой четверти
             for (int i = 0; i < side / 2; i++)
-            {
                 for (int j = 0; j < side / 2; j++)
                     list.Add(new Point(i, j));
-            }
             var rand = new Random();
             while (list.Count > 0)
             {
@@ -60,6 +54,17 @@
         public int this [int i, int j]
         {
             get => lattice [i, j];
+        }
+
+        public void RotateClockwise()
+        {
+            var rezult = new int[side, side];
+            for (int i = 0; i < side; i++)
+                for (int j = 0; j < side; j++)
+                    rezult[i, j] = lattice[side - j - 1, i];
+            for (int i = 0; i < side; i++)
+                for (int j = 0; j < side; j++)
+                    lattice[i, j] = rezult[i, j];
         }
     }
 }
