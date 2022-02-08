@@ -1,10 +1,15 @@
+using WinFormsMatrixRecoder.Model;
+
 namespace WinFormsMatrixRecoder
 {
     public partial class MainForm : Form
     {
+        Lattice lattice;
+
         public MainForm()
         {
             InitializeComponent();
+            lattice = new Lattice(10);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
