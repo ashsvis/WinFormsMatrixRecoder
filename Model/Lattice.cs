@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WinFormsMatrixRecoder.Model
+﻿namespace WinFormsMatrixRecoder.Model
 {
     public class Lattice
     {
@@ -20,28 +14,52 @@ namespace WinFormsMatrixRecoder.Model
             {
                 for (int j=0; j < side; j++)
                 {
-                    lattice[j, i] = 1;
+                    lattice[i, j] = 1;
                 }
             }
             // добавление "прорезей"
-            for (int i = 0; i < side; i++)
+            var list = new List<Point>();
+            // создадим список индексов решётки из первой четверти
+            for (int i = 0; i < side / 2; i++)
             {
-                for (int j = 0; j < side; j++)
+                for (int j = 0; j < side / 2; j++)
+                    list.Add(new Point(i, j));
+            }
+            var rand = new Random();
+            while (list.Count > 0)
+            {
+                // получаем случайную позицию в массиве индексов решетки
+                var indexInList = rand.Next(list.Count);
+                // получаем значение идекса из массива возможных идексов
+                var index = list[indexInList];
+                var i = index.X;
+                var j = index.Y;
+                // делаем "прорезь"
+                switch (rand.Next(4))
                 {
-                    if (lattice[i, j] != 0 &&
-                        lattice[side - i - 1, j] != 0 &&
-                        lattice[i, side - j - 1] != 0 &&
-                        lattice[side - i - 1, side - j - 1] != 0)
-                        lattice[j, i] = 0;
+                    case 0:
+                        lattice[i, j] = 0;
+                        break;
+                    case 1:
+                        lattice[side - i - 1, j] = 0;
+                        break;
+                    case 2:
+                        lattice[i, side - j - 1] = 0;
+                        break;
+                    case 3:
+                        lattice[side - i - 1, side - j - 1] = 0;
+                        break;
                 }
+                // удаление использованного индекса решетки
+                list.RemoveAt(indexInList);
             }
         }
 
         public int Side { get => side; }
 
-        public int this [int x, int y]
+        public int this [int i, int j]
         {
-            get => lattice [x, y];
+            get => lattice [i, j];
         }
     }
 }
