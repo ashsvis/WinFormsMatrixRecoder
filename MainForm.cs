@@ -26,8 +26,17 @@ namespace WinFormsMatrixRecoder
         private void panelForMatrix_Paint(object sender, PaintEventArgs e)
         {
             var panel = (Panel)sender;
-            var rect = new Rectangle(0,0,panel.ClientSize.Width, panel.ClientSize.Height);
-            e.Graphics.FillRectangle(Brushes.Red, rect);
+            int side = panel.ClientSize.Width / lattice.Side;
+            for (int i = 0; i < lattice.Side; i++)
+            {
+                for (int j = 0; j < lattice.Side; j++)
+                {
+                    var rect = new Rectangle(i * side, j * side, side, side);
+                    if (lattice[j, i] == 0)
+                        e.Graphics.FillRectangle(Brushes.Red, rect);
+                    e.Graphics.DrawRectangle(Pens.Gray, rect);
+                }
+            }
         }
     }
 }
