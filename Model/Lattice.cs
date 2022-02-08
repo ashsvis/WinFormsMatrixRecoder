@@ -5,6 +5,10 @@
         private readonly int side;
         private readonly int[,] lattice;
 
+        /// <summary>
+        /// Конструктор для создания решётки с указанным размером стороны и случайными значениями
+        /// </summary>
+        /// <param name="side">Размер стороны квадратной решётки</param>
         public Lattice(int side = 10)
         {
             this.side = side;
@@ -49,13 +53,30 @@
             }
         }
 
-        public int Side { get => side; }
-
-        public int this [int i, int j]
+        /// <summary>
+        /// Конструктор для создания рещётки из массива байтов
+        /// </summary>
+        /// <param name="bytes"></param>
+        public Lattice(byte[] bytes)
         {
-            get => lattice [i, j];
+            this.side = (int)Math.Sqrt(bytes.Length);
+            lattice = new int[side, side];
+            var offset = 0;
+            for (int i = 0; i < side; i++)
+                for (int j = 0; j < side; j++)
+                    lattice[i, j] = bytes[offset++];
         }
 
+        public int Side { get => side; }
+
+        public int this[int i, int j]
+        {
+            get => lattice[i, j];
+        }
+
+        /// <summary>
+        /// Вращение решётки по часовой стрелке на 90°
+        /// </summary>
         public void RotateClockwise()
         {
             var rezult = new int[side, side];

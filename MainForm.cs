@@ -44,5 +44,25 @@ namespace WinFormsMatrixRecoder
             lattice.RotateClockwise();
             panelForMatrix.Invalidate();
         }
+
+        private void tsmiSaveAs_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialogForLattice.ShowDialog(this) == DialogResult.OK)
+            {
+                SaveLoader.LatticeSave(saveFileDialogForLattice.FileName, lattice);
+            }
+        }
+
+        private void tsmiOpen_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                if (openFileDialog.FilterIndex == 2)
+                {
+                    lattice = SaveLoader.LatticeLoad(openFileDialog.FileName);
+                    panelForMatrix.Invalidate();
+                }
+            }
+        }
     }
 }
