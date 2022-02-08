@@ -39,12 +39,6 @@ namespace WinFormsMatrixRecoder
             }
         }
 
-        private void panelForMatrix_Click(object sender, EventArgs e)
-        {
-            lattice.RotateClockwise();
-            panelForMatrix.Invalidate();
-        }
-
         private void tsmiSaveAs_Click(object sender, EventArgs e)
         {
             if (saveFileDialogForLattice.ShowDialog(this) == DialogResult.OK)
@@ -57,10 +51,16 @@ namespace WinFormsMatrixRecoder
         {
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                if (openFileDialog.FilterIndex == 2)
+                if (openFileDialog.FilterIndex == 1)
+                {
+                    tbSourceText.Text = File.ReadAllText(openFileDialog.FileName);
+                    tbTargetText.Text = Ñryptographer.Encode(tbSourceText.Text);
+                }    
+                else if (openFileDialog.FilterIndex == 2)
                 {
                     lattice = SaveLoader.LatticeLoad(openFileDialog.FileName);
                     panelForMatrix.Invalidate();
+                    tbTargetText.Text = Ñryptographer.Encode(tbSourceText.Text);
                 }
             }
         }

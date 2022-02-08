@@ -73,11 +73,11 @@
             this.справкаToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbSourceText = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panelForMatrix = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbTargetText = new System.Windows.Forms.TextBox();
             this.saveFileDialogForLattice = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
@@ -469,7 +469,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.tbSourceText);
             // 
             // splitContainer1.Panel2
             // 
@@ -478,14 +478,15 @@
             this.splitContainer1.SplitterDistance = 186;
             this.splitContainer1.TabIndex = 3;
             // 
-            // textBox1
+            // tbSourceText
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(186, 441);
-            this.textBox1.TabIndex = 0;
+            this.tbSourceText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbSourceText.Location = new System.Drawing.Point(0, 0);
+            this.tbSourceText.Multiline = true;
+            this.tbSourceText.Name = "tbSourceText";
+            this.tbSourceText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbSourceText.Size = new System.Drawing.Size(186, 441);
+            this.tbSourceText.TabIndex = 0;
             // 
             // splitContainer2
             // 
@@ -502,7 +503,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.textBox2);
+            this.splitContainer2.Panel2.Controls.Add(this.tbTargetText);
             this.splitContainer2.Size = new System.Drawing.Size(604, 441);
             this.splitContainer2.SplitterDistance = 402;
             this.splitContainer2.TabIndex = 0;
@@ -529,17 +530,17 @@
             this.panelForMatrix.Name = "panelForMatrix";
             this.panelForMatrix.Size = new System.Drawing.Size(300, 300);
             this.panelForMatrix.TabIndex = 0;
-            this.panelForMatrix.Click += new System.EventHandler(this.panelForMatrix_Click);
             this.panelForMatrix.Paint += new System.Windows.Forms.PaintEventHandler(this.panelForMatrix_Paint);
             // 
-            // textBox2
+            // tbTargetText
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(0, 0);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(198, 441);
-            this.textBox2.TabIndex = 0;
+            this.tbTargetText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbTargetText.Location = new System.Drawing.Point(0, 0);
+            this.tbTargetText.Multiline = true;
+            this.tbTargetText.Name = "tbTargetText";
+            this.tbTargetText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbTargetText.Size = new System.Drawing.Size(198, 441);
+            this.tbTargetText.TabIndex = 0;
             // 
             // saveFileDialogForLattice
             // 
@@ -634,8 +635,8 @@
         private SplitContainer splitContainer2;
         private TableLayoutPanel tableLayoutPanel2;
         private Panel panelForMatrix;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox tbSourceText;
+        private TextBox tbTargetText;
         private SaveFileDialog saveFileDialogForLattice;
         private OpenFileDialog openFileDialog;
     }
