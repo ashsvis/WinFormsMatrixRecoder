@@ -61,6 +61,9 @@ namespace WinFormsMatrixRecoder
                     lattice = SaveLoader.LatticeLoad(openFileDialog.FileName);
                     panelForMatrix.Invalidate();
                     tbTargetText.Text = Ñryptographer.EncodeDecode(tbSourceText.Text, lattice);
+                    var decoded = Ñryptographer.EncodeDecode(tbTargetText.Text, lattice);
+                    tbTargetText.Text += Environment.NewLine;
+                    tbTargetText.Text += decoded;
                 }
             }
         }
