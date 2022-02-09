@@ -9,7 +9,7 @@ namespace WinFormsMatrixRecoder
         public MainForm()
         {
             InitializeComponent();
-            lattice = new Lattice(10);
+            lattice = new Lattice(2);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace WinFormsMatrixRecoder
                     panelForMatrix.Invalidate();
                     tbTargetText.Text = Ñryptographer.Encode(tbSourceText.Text, lattice);
                 }
-                var decoded = Ñryptographer.Encode(tbTargetText.Text, lattice);
+                var decoded = Ñryptographer.Decode(tbTargetText.Text, lattice);
             }
         }
     }
