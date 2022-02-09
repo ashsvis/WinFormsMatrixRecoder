@@ -62,6 +62,7 @@ namespace WinFormsMatrixRecoder
                     panelForMatrix.Invalidate();
                     tbTargetText.Text = Ñryptographer.Encode(tbSourceText.Text, lattice);
                 }
+                var decoded = Ñryptographer.Encode(tbTargetText.Text, lattice);
             }
         }
     }
