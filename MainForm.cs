@@ -54,16 +54,13 @@ namespace WinFormsMatrixRecoder
                 if (openFileDialog.FilterIndex == 1)
                 {
                     tbSourceText.Text = File.ReadAllText(openFileDialog.FileName);
-                    tbTargetText.Text = Ñryptographer.EncodeDecode(tbSourceText.Text, lattice);
+                    tbTargetText.Text = Ñryptographer.Encode(tbSourceText.Text, lattice);
                 }    
                 else if (openFileDialog.FilterIndex == 2)
                 {
                     lattice = SaveLoader.LatticeLoad(openFileDialog.FileName);
                     panelForMatrix.Invalidate();
-                    tbTargetText.Text = Ñryptographer.EncodeDecode(tbSourceText.Text, lattice);
-                    var decoded = Ñryptographer.EncodeDecode(tbTargetText.Text, lattice);
-                    tbTargetText.Text += Environment.NewLine;
-                    tbTargetText.Text += decoded;
+                    tbTargetText.Text = Ñryptographer.Encode(tbSourceText.Text, lattice);
                 }
             }
         }

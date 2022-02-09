@@ -4,22 +4,33 @@ namespace WinFormsMatrixRecoder.Model
 {
     public static class Сryptographer
     {
-        public static string EncodeDecode(string text, Lattice lattice)
+        public static string Encode(string text, Lattice lattice)
         {
-            var rezult = new StringBuilder();
-            for (var k = 0; k < 4; k++)
+            var result = new StringBuilder();
+            var frame = new char[lattice.Side, lattice.Side];
+            var textOffset = 0;
+
+            while (textOffset < text.Length)
             {
-                var offset = 0;
+                // заполнение исходной матрицы
                 for (int i = 0; i < lattice.Side; i++)
                     for (int j = 0; j < lattice.Side; j++)
                     {
-                        if (lattice[i, j] == 0)
-                            rezult.Append(offset < text.Length ? text[offset] : ' ');
-                        offset++;
+                        frame[i, j] = textOffset < text.Length ? text[textOffset] : ' ';
+                        textOffset++;
                     }
-                lattice.RotateClockwise();
+                for (var k = 0; k < 4; k++)
+                {
+                    for (int i = 0; i < lattice.Side; i++)
+                        for (int j = 0; j < lattice.Side; j++)
+                        {
+                            if (lattice[i, j] == 0)
+                                result.Append(frame[i, j]);
+                        }
+                    lattice.RotateClockwise();
+                }
             }
-            return rezult.ToString();
+            return result.ToString();
         }
     }
 }
