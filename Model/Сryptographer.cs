@@ -62,6 +62,10 @@ namespace WinFormsMatrixRecoder.Model
                         frame[i, j] = textOffset < text.Length ? text[textOffset] : ' ';
                         textOffset++;
                     }
+                var outFrame = new char[lattice.Side, lattice.Side];
+                for (int i = 0; i < lattice.Side; i++)
+                    for (int j = 0; j < lattice.Side; j++)
+                        outFrame[i, j] = ' ';
                 // поворачиваем решётку четыре раза
                 for (var k = 0; k < 4; k++)
                 {
@@ -70,10 +74,14 @@ namespace WinFormsMatrixRecoder.Model
                         for (int j = 0; j < lattice.Side; j++)
                         {
                             if (lattice[i, j] == 0)
-                                result.Append(frame[i, j]);
+                                outFrame[i, j] = frame[i, j];
                         }
                     lattice.RotateClockwise();
                 }
+
+                for (int i = 0; i < lattice.Side; i++)
+                    for (int j = 0; j < lattice.Side; j++)
+                        result.Append(outFrame[i, j]);
             }
             return result.ToString();
         }
