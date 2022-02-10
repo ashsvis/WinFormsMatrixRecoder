@@ -9,8 +9,11 @@ namespace WinFormsMatrixRecoder
         public MainForm()
         {
             InitializeComponent();
-            lattice = new Lattice(new byte[] { 1, 1, 
-                                               0, 1 });
+            lattice = new Lattice(new byte[] { 0, 1, 1, 1,
+                                               1, 1, 1, 0,
+                                               1, 1, 0, 1,
+                                               1, 0, 1, 1});
+            //lattice = new Lattice(10);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
