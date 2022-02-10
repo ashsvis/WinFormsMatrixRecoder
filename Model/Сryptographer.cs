@@ -13,30 +13,29 @@ namespace WinFormsMatrixRecoder.Model
         public static string Encode(string text, Lattice lattice)
         {
             var result = new StringBuilder();
-            var frame = new char[lattice.Side, lattice.Side];
             var textOffset = 0;
             // пока не закончится текст
             while (textOffset < text.Length)
             {
-                // заполнение исходной матрицы по-фреймно
+                var frame = new char[lattice.Side, lattice.Side];
                 for (int i = 0; i < lattice.Side; i++)
                     for (int j = 0; j < lattice.Side; j++)
-                    {
-                        frame[i, j] = textOffset < text.Length ? text[textOffset] : ' ';
-                        textOffset++;
-                    }
+                        frame[i, j] = ' ';
                 // поворачиваем решётку четыре раза
                 for (var k = 0; k < 4; k++)
                 {
-                    // собираем сквозь прорези решётки буквы из текущего фрейма
+                    // заполняем сквозь прорези решётки буквы в текущий фрейм
                     for (int i = 0; i < lattice.Side; i++)
                         for (int j = 0; j < lattice.Side; j++)
-                        {
                             if (lattice[i, j] == 0)
-                                result.Append(frame[i, j]);
-                        }
+                                frame[i, j] = textOffset < text.Length ? text[textOffset++] : ' ';
                     lattice.RotateClockwise();
                 }
+                // собираем буквы из фрейма построчно
+                for (int i = 0; i < lattice.Side; i++)
+                    for (int j = 0; j < lattice.Side; j++)
+                        result.Append(frame[i, j]);
+
             }
             return result.ToString();
         }
