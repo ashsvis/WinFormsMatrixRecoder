@@ -31,6 +31,9 @@ namespace WinFormsMatrixRecoder.Model
                                 frame[i, j] = textOffset < text.Length ? text[textOffset++] : ' ';
                     lattice.RotateClockwise();
                 }
+
+                if (textOffset == 0) return string.Empty;
+
                 // собираем буквы из фрейма построчно
                 for (int i = 0; i < lattice.Side; i++)
                     for (int j = 0; j < lattice.Side; j++)
