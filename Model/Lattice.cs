@@ -13,6 +13,32 @@
         {
             this.side = side;
             lattice = new int[side, side];
+            // подготовка нумерованных и повёрнутых на 90° квадрантов решётки
+            // первый квадрант
+            var offset = 1;
+            for (int i = 0; i < side / 2; i++)
+                for (int j = 0; j < side / 2; j++)
+                    lattice[i, j] = offset++;
+            // второй квадрант
+            offset = 1;
+            for (int j = side - 1; j >= side / 2; j--)
+                for (int i = 0; i < side / 2; i++)
+                    lattice[i, j] = offset++;
+            // третий квадрант
+            offset = 1;
+            for (int i = side - 1; i >= side / 2; i--)
+                for (int j = side - 1; j >= side / 2; j--)
+                    lattice[i, j] = offset++;
+            // четвертый квадрант
+            offset = 1;
+            for (int j = 0; j < side / 2; j++)
+                for (int i = side - 1; i >= side / 2; i--)
+                    lattice[i, j] = offset++;
+
+
+
+            /*
+
             // создание решетки без "прорезей"
             for (int i = 0; i < side; i++)
                 for (int j = 0; j < side; j++)
@@ -46,6 +72,8 @@
                 list.RemoveAll(item => item.X == side - i - 1 && item.Y == side - j - 1);
                 list.RemoveAll(item => item.X == side - i - 1 && item.Y == j);
             }
+
+            */
         }
 
         /// <summary>

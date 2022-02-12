@@ -39,6 +39,9 @@ namespace WinFormsMatrixRecoder
                     if (lattice[j, i] == 0)
                         e.Graphics.FillRectangle(Brushes.Red, rect);
                     e.Graphics.DrawRectangle(Pens.Gray, rect);
+
+                    e.Graphics.DrawString($"{lattice[j, i]}", DefaultFont, Brushes.Black, rect.X, rect.Y);
+
                 }
             }
         }
