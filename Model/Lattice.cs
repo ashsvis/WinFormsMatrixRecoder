@@ -34,46 +34,35 @@
             for (int j = 0; j < side / 2; j++)
                 for (int i = side - 1; i >= side / 2; i--)
                     lattice[i, j] = offset++;
-
-
-
-            /*
-
-            // создание решетки без "прорезей"
-            for (int i = 0; i < side; i++)
-                for (int j = 0; j < side; j++)
-                    lattice[i, j] = 1;
-
-            // добавление "прорезей"
-            var list = new List<Point>();
-
-            // создадим список индексов решётки
-            for (int i = 0; i < side; i++)
-                for (int j = 0; j < side; j++)
-                    list.Add(new Point(i, j));
-
-            var rand = new Random();
-            while (list.Count > 0)
+            // создание списка массивов координат ячеек с одинаковой цифрой
+            var list = new List<Point[]>();
+            for (var index = 1; index <= (side / 2) * (side / 2); index++)
             {
-                // получаем случайную позицию в массиве индексов решетки
-                var indexInList = rand.Next(list.Count);
-                
-                // получаем значение индекса из массива возможных индексов
-                var index = list[indexInList];
-                var i = index.X;
-                var j = index.Y;
-                
+                list.Add(new Point[4]);
+                var k = 0;
+                while (k < 4)
+                {
+                    for (int i = 0; i < side; i++)
+                        for (int j = 0; j < side; j++)
+                            if (lattice[i, j] == index)
+                                list[index - 1][k++] = new Point(i, j);
+                }
+            }
+            // раскрашиваем и делаем прорези
+            var rand = new Random();
+            foreach (var item in list)
+            {
+                var n = rand.Next(4);
+                var i = item[n].X;
+                var j = item[n].Y;
                 // делаем "прорезь"
                 lattice[i, j] = 0;
-
-                // удаление использованных индексов решетки
-                list.RemoveAll(item => item.X == i && item.Y == j);
-                list.RemoveAll(item => item.X == i && item.Y == side - j - 1);
-                list.RemoveAll(item => item.X == side - i - 1 && item.Y == side - j - 1);
-                list.RemoveAll(item => item.X == side - i - 1 && item.Y == j);
-            }
-
-            */
+            }            
+            // всё остальное делаем "непрозрачным"
+            for (int i = 0; i < side; i++)
+                for (int j = 0; j < side; j++)
+                    if (lattice[i, j] != 0)
+                        lattice[i, j] = 1;
         }
 
         /// <summary>

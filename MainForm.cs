@@ -9,11 +9,7 @@ namespace WinFormsMatrixRecoder
         public MainForm()
         {
             InitializeComponent();
-            //lattice = new Lattice(new byte[] { 0, 1, 1, 1,
-            //                                   1, 1, 1, 0,
-            //                                   1, 1, 0, 1,
-            //                                   1, 0, 1, 1});
-            lattice = new Lattice(10);
+            lattice = new Lattice(30);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -39,9 +35,6 @@ namespace WinFormsMatrixRecoder
                     if (lattice[j, i] == 0)
                         e.Graphics.FillRectangle(Brushes.Red, rect);
                     e.Graphics.DrawRectangle(Pens.Gray, rect);
-
-                    e.Graphics.DrawString($"{lattice[j, i]}", DefaultFont, Brushes.Black, rect.X, rect.Y);
-
                 }
             }
         }
